@@ -4,6 +4,9 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='http://bootswatch.com/spacelab/bootstrap.min.css'>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://use.fontawesome.com/c12bf1b8dc.js"></script>
+
   </head>
   <body>
     <h1><%= title %></h1>
@@ -15,14 +18,27 @@
 
               <% feed.forEach(function(item){ %>
 
-               <p><%= item.growl %><a href="#" class="alert-link"><br /><button onclick="myFunction()"> Destruct this Message!</button></a></p>
+               <p><%= item.growl %><a href="#" class="alert-link"><br /><i class="fa fa-glass" aria-hidden="true"></i><button onclick="myFunction()"> Destruct this Message!</button></a></p>
 
              <% }); %>
       </div>
+
         <script>
-        function myFunction() {
-            alert("You can't delete things from the Interwebz!");
-        }
+          function myFunction() {
+              alert("You can't delete things from the Interwebz!");
+          }
+
+          function updateCountdown() {
+            // 140 is the max message length
+            var remaining = 141 - jQuery('.message').val().length;
+            jQuery('.countdown').text(remaining + ' characters remaining.');
+          }
+
+          jQuery(document).ready(function($) {
+            updateCountdown();
+            $('.message').change(updateCountdown);
+            $('.message').keyup(updateCountdown);
+          });
         </script>
   </body>
 
@@ -30,6 +46,7 @@
     <form action="/" method="post">
       <div class="col-lg-10 input">
         <textArea class="text" type="text" name="growl" maxlength='141' style='width:20em' rows="3"></textarea>
+        <span class="countdown"></span>
         <input class="submit" type="submit" value="Get Your Growl On!">
       </div>
     </form>
