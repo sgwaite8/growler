@@ -6,8 +6,14 @@
   </head>
   <body>
     <h1><%= title %></h1>
+    <% feed.forEach(function(item){ %>
+     <!-- <div> -->
+       <li><%= item.growl %></li>
+     <!-- </div> -->
+
+     <% }); %>
     <form action="/" method="post">
-      <input type="text" name="typeGrowl">
+      <input type="text" name="growl">
       <input type="submit" value="Get Your Growl On!">
     </form>
   </body>

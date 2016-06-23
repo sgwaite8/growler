@@ -25,6 +25,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { path: '/', httpOnly: true, secure: false, maxAge: null }
+}));
+
+app.use(function(req, res, next) {
+  req.session.feed = req.session.feed || [];
+  app.locals.feed = req.session.feed;
+  next();
+});
+
 app.use('/', routes);
 // app.use('/users', users);
 

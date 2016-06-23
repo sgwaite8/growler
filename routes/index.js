@@ -7,4 +7,20 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Growler' });
 });
 
+router.get('/index', function(req, res, next) {
+  res.render('index', { growl: req.session.feed });
+});
+
+router.post('/', function(req, res, next) {
+  // var growl = Growl.all;
+  var temp = req.body;
+  req.session.feed.push(temp);
+  res.redirect('/');
+  console.log(req.session.feed);
+});
+
+router.get('/', function(req, res, next) {
+  res.render('index');
+});
+
 module.exports = router;
