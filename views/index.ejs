@@ -7,22 +7,33 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <% feed.forEach(function(item){ %>
-     <!-- <div> -->
-       <li><%= item.growl %></li>
-     <!-- </div> -->
+    <section>
 
-     <% }); %>
+    </section>
+      <div class="alert alert-dismissible alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
 
-    <form action="/" method="post">
-      <input type="text" name="growl">
-      <input type="submit" value="Get Your Growl On!">
-    </form>
+              <% feed.forEach(function(item){ %>
 
+               <p><%= item.growl %><a href="#" class="alert-link"><br /><button onclick="myFunction()"> Destruct this Message!</button></a></p>
+
+             <% }); %>
+      </div>
+        <script>
+        function myFunction() {
+            alert("You can't delete things from the Interwebz!");
+        }
+        </script>
   </body>
+
+  <footer>
+    <form action="/" method="post">
+      <div class="col-lg-10 input">
+        <textArea class="text" type="text" name="growl" maxlength='141' style='width:20em' rows="3"></textarea>
+        <input class="submit" type="submit" value="Get Your Growl On!">
+      </div>
+    </form>
+  </footer>
 </html>
 
-
-
-        <!-- <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span> -->
 

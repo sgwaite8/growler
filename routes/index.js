@@ -12,7 +12,6 @@ router.get('/index', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  // var growl = Growl.all;
   var temp = req.body;
   req.session.feed.push(temp);
   res.redirect('/');
